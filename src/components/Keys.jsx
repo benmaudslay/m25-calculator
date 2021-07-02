@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 const keysArray = [
   { value: "AC", styling: "clear wide" },
   { value: "/", styling: "operator" },
@@ -20,12 +22,56 @@ const keysArray = [
 
 export const Keys = ({ handleKey }) => {
   return (
-    <div className="keys">
+    <KeysWrapper>
       {keysArray.map((item, index) => (
-        <button key={index} onClick={() => handleKey(item.value)}>
+        <button
+          key={index}
+          onClick={() => handleKey(item.value)}
+          className={item.styling}
+        >
           {item.value}
         </button>
       ))}
-    </div>
+    </KeysWrapper>
   );
 };
+
+const KeysWrapper = styled.div`
+  display: grid;
+  grid-template-areas:
+    "clear clear clear ."
+    ". . . ."
+    ". . . ."
+    ". . . ."
+    "zero zero . .";
+  gap: 5px;
+  width: 240px;
+
+  button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    /* 
+    align-self: center;
+    justify-self: center; */
+  }
+
+  .operator {
+    background-color: #ff952a;
+    color: white;
+  }
+
+  .wide {
+    width: auto;
+    border-radius: 25px;
+  }
+
+  .clear {
+    grid-area: clear;
+  }
+
+  .zero {
+    grid-area: zero;
+  }
+`;
