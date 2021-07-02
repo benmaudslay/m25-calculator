@@ -18,11 +18,13 @@ const keysArray = [
   { value: "=", styling: "operator" },
 ];
 
-export const Keys = () => {
+export const Keys = ({ handleKey }) => {
   return (
     <div className="keys">
       {keysArray.map((item, index) => (
-        <button key={index}>{item.value}</button>
+        <button key={index} onClick={() => handleKey(item.value)}>
+          {item.value}
+        </button>
       ))}
     </div>
   );
